@@ -3,11 +3,11 @@ import axios from 'axios';
 
 
 function App(props) {
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState([]);
     const getUser = async ()=>{
         try {
-            let response = await axios.get('https://jsonplaceholder.typicode.com/users')
-            setUsers(response.data)
+            let response = await axios.get('https://jsonplaceholder.typicode.com/users/1')
+            setUser(response.data)
         } catch (e){
             console.log(e.message);
         }
@@ -31,19 +31,26 @@ function App(props) {
                                 </tr>
                            </thead>
                            <tbody>
-                               {
-                                   users.map((user,index)=>{
-                                       return(
-                                           <tr key={index}>
-                                               <td>{user.name}</td>
-                                               <td>{user.username}</td>
-                                               <td>{user.email}</td>
-                                               <td>{user.website}</td>
-                                               <td>{user.phone}</td>
-                                           </tr>
-                                       )
-                                   })
-                               }
+                               <tr >
+                                   <td>{user.name}</td>
+                                   <td>{user.username}</td>
+                                   <td>{user.email}</td>
+                                   <td>{user.website}</td>
+                                   <td>{user.phone}</td>
+                               </tr>
+                               {/*{*/}
+                               {/*    users.map((user,index)=>{*/}
+                               {/*        return(*/}
+                               {/*            <tr key={index}>*/}
+                               {/*                <td>{user.name}</td>*/}
+                               {/*                <td>{user.username}</td>*/}
+                               {/*                <td>{user.email}</td>*/}
+                               {/*                <td>{user.website}</td>*/}
+                               {/*                <td>{user.phone}</td>*/}
+                               {/*            </tr>*/}
+                               {/*        )*/}
+                               {/*    })*/}
+                               {/*}*/}
                            </tbody>
                        </table>
                    </div>
