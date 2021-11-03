@@ -1,60 +1,14 @@
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
+import React from 'react';
+import Router from "./router";
+import Navbar from "./components/Navbar";
 
-
-function App(props) {
-    const [identifier, setIdentifier] = useState(1);
-    const [user, setUser] = useState([]);
-    const [loading, setLoading] = useState(false)
-    const getUser = async () => {
-        setLoading(true)
-        try {
-            let response = await axios.get(`https://jsonplaceholder.typicode.com/users/${identifier}`)
-            setUser(response.data)
-            setLoading(false)
-        } catch (e) {
-            setLoading(true)
-            console.log(e.message);
-        }
-    }
-    useEffect(() => {
-        getUser();
-    }, [identifier])
+function App() {
     return (
-        <div className="py-4">
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <input type="text" name="identifier" value={identifier}
-                               onChange={(e) => setIdentifier(e.target.value)} className="form-control"/>
-                        {
-                                loading ? <div>Loading ...</div> :
-                                <table className="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Website</th>
-                                        <th>phone</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>{user.name}</td>
-                                        <td>{user.username}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.website}</td>
-                                        <td>{user.phone}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                        }
-                    </div>
-                </div>
-            </div>
+        <div className="container">
+            <Navbar/>
+            <Router/>
         </div>
-    )
+    );
 }
 
 export default App;
